@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup to Edukids</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html,body{
+  float: right;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  /* margin-left: 500px; */
+  /* margin-top: 200px; */
+  background-image: url('9.png');
+  place-items: center;
+  /* background: -webkit-linear-gradient(left, #7a64ca, #9faf72); */
+  position: relative;
+  /* margin-left: 200px; */
+}
+::selection{
+  background: #7494da;
+  color: #fff;
+}
+.wrapper{
+  overflow: hidden;
+  max-width: 390px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+  float: right;
+  position:absolute;
+  margin-left: 43rem;
+}
+.wrapper .title-text{
+  display: flex;
+  width: 200%;
+}
+.wrapper .title{
+  width: 50%;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+.wrapper .slide-controls{
+  position: relative;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+  margin: 30px 0 10px 0;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+.slide-controls .slide{
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.6s ease;
+}
+.slide-controls label.signup{
+  color: #000;
+}
+.slide-controls .slider-tab{
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  left: 0;
+  z-index: 0;
+  border-radius: 5px;
+  background: -webkit-linear-gradient(left, #c1d675, #5d70dd);
+  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+input[type="radio"]{
+  display: none;
+}
+#signup:checked ~ .slider-tab{
+  left: 50%;
+}
+#signup:checked ~ label.signup{
+  color: #fff;
+  cursor: default;
+  user-select: none;
+}
+#signup:checked ~ label.login{
+  color: #000;
+}
+#login:checked ~ label.signup{
+  color: #000;
+}
+#login:checked ~ label.login{
+  cursor: default;
+  user-select: none;
+}
+.wrapper .form-container{
+  width: 100%;
+  overflow: hidden;
+}
+.form-container .form-inner{
+  display: flex;
+  width: 200%;
+}
+.form-container .form-inner form{
+  width: 50%;
+  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+.form-inner form .field{
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+}
+.form-inner form .field input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 15px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  border-bottom-width: 2px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+.form-inner form .field input:focus{
+  border-color: #9069ce;
+  /* box-shadow: inset 0 0 3px #fb6aae; */
+}
+.form-inner form .field input::placeholder{
+  color: #999;
+  transition: all 0.3s ease;
+}
+form .field input:focus::placeholder{
+  color: #b3b3b3;
+}
+.form-inner form .pass-link{
+  margin-top: 5px;
+}
+.form-inner form .signup-link{
+  text-align: center;
+  margin-top: 30px;
+}
+.form-inner form .pass-link a,
+.form-inner form .signup-link a{
+  color: rgb(90, 90, 163);
+  text-decoration: none;
+}
+.form-inner form .pass-link a:hover,
+.form-inner form .signup-link a:hover{
+  text-decoration: underline;
+}
+form .btn{
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+form .btn .btn-layer{
+  height: 100%;
+  width: 300%;
+  position: absolute;
+  left: -100%;
+  background: -webkit-linear-gradient(right, #0943e4, #7274d4, #b1b0eb, #5e42fa);
+  border-radius: 5px;
+  transition: all 0.4s ease;;
+}
+form .btn:hover .btn-layer{
+  left: 0;
+}
+form .btn input[type="submit"]{
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  background: none;
+  border: none;
+  color: #fff;
+  padding-left: 0;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+    </style>
+</head>
+<body>
+        <div class="wrapper">
+           <div class="title-text">
+              <div class="title login">
+                 Login Form
+              </div>
+              <div class="title signup">
+                 Signup Form
+              </div>
+           </div>
+           <div class="form-container">
+              <div class="slide-controls">
+                 <input type="radio" name="slide" id="login" checked>
+                 <input type="radio" name="slide" id="signup">
+                 <label for="login" class="slide login">Login</label>
+                 <label for="signup" class="slide signup">Signup</label>
+                 <div class="slider-tab"></div>
+              </div>
+              <div class="form-inner">
+                <!-- here we link standed page to the signup button -->
+                 <form action="standerd_selection.html" class="login">
+                    <div class="field">
+                       <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="field">
+                       <input type="password" placeholder="Password" required>
+                       <span></span>
+                    </div>
+                    <div class="pass-link">
+                       <a href="#">Forgot password?</a>
+                    </div>
+                    <div class="field btn">
+                       <div class="btn-layer"></div>
+                       <input type="submit" value="Login">
+                    </div>
+                    <div class="signup-link">
+                       Not a member? <a href="">Signup now</a>
+                    </div>
+                 </form>
+                 <!-- here we link standed page to the signup button -->
+                 <form action="standerd_selection.html" class="signup">
+                    <div class="field">
+                      
+                        <label>Email</label>
+                       <input type="email" name="email" id="Emailid" required>
+                       <span id="Email"></span>
+                       
+                    </div>
+                    <div class="field">
+                       <input type="password" placeholder="Password" id="passwords" required>
+                       <span id="password"></span>
+                    </div>
+                    <div class="field">
+                       <input type="password" placeholder="Confirm password" id="Confirm passwords" required>
+                       <span id="Confirm password"></span>
+                    </div>
+                    <div class="field btn">
+                       <div class="btn-layer"></div>
+                       <input type="submit" value="Signup">
+                    </div>
+                  
+                 </form>
+              </div>
+           </div>
+        </div>
+      
+
+        <script>
+           const loginText = document.querySelector(".title-text .login");
+           const loginForm = document.querySelector("form.login");
+           const loginBtn = document.querySelector("label.login");
+           const signupBtn = document.querySelector("label.signup");
+           const signupLink = document.querySelector("form .signup-link a");
+           signupBtn.onclick = (()=>{
+             loginForm.style.marginLeft = "-50%";
+             loginText.style.marginLeft = "-50%";
+           });
+           loginBtn.onclick = (()=>{
+             loginForm.style.marginLeft = "0%";
+             loginText.style.marginLeft = "0%";
+           });
+           signupLink.onclick = (()=>{
+             signupBtn.click();
+             return false;
+           });
+           
+           function validateForm() {  
+    //collect form data in JavaScript variables  
+    var pw1 = document.getElementById("password").value;  
+    var pw2 = document.getElementById("Confirm password").value;  
+    var name1 = document.getElementById("Email").value;  
+    // var name2 = document.getElementById("lname").value;  
+      
+    // check empty first name field  
+    if(name1 == "") {  
+      document.getElementById("Email").innerHTML = "**Fill the first name";  
+      return false;  
+    }  
+      
+    //character data validation  
+    if(!isNaN(name1)){  
+      document.getElementById("Email").innerHTML = "**Only characters are allowed";  
+      return false;  
+    }  
+  
+  //  //character data validation  
+  //   if(!isNaN(name2)){  
+  //     document.getElementById("charMsg").innerHTML = "**Only characters are allowed";  
+  //     return false;  
+  //   }   
+    
+    //check empty password field  
+    if(pw1 == "") {  
+      document.getElementById("password").innerHTML = "**Fill the password please!";  
+      return false;  
+    }  
+    
+    //check empty confirm password field  
+    if(pw2 == "") {  
+      document.getElementById("Confirm password").innerHTML = "**Enter the password please!";  
+      return false;  
+    }   
+     
+    //minimum password length validation  
+    if(pw1.length < 8) {  
+      document.getElementById("password").innerHTML = "**Password length must be atleast 8 characters";  
+      return false;  
+    }  
+  
+    //maximum length of password validation  
+    if(pw1.length > 15) {  
+      document.getElementById("password").innerHTML = "**Password length must not exceed 15 characters";  
+      return false;  
+    }  
+    
+    if(pw1 == pw2) {  
+      alert ("Your password created successfully");  
+      document.write("JavaScript form has been submitted successfully");
+      return true;
+       
+    } else {  
+      document.getElementById("Confirm password").innerHTML = "**Passwords are not same";  
+      return false;
+        
+    }  
+ }  
+
+
+          // fpr authentication
+
+          
+        </script>
+</body>
+</html>
